@@ -38,8 +38,12 @@ for root, dirs, files in os.walk("."):
 def build(bld):
     cpukit_include = os.path.join(bld.env.RTEMS_SOURCE, 'cpukit', 'include')
     include_path = ['./', os.path.relpath(cpukit_include), os.path.relpath(bld.env.PREFIX)]
+    arch_lib_path = rtems.arch_bsp_lib_path(bld.env.RTEMS_VERSION,
+                                            bld.env.RTEMS_ARCH_BSP)
+
     bld.stlib(target = 'networking',
               features = 'c',
               cflags = ['-O2', '-g'],
               includes = include_path,
               source = source_files)
+    bld.install_files(os.path.join('${PREFIX}', arch_lib_path), ["libnetworking.a"])
