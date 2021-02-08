@@ -36,8 +36,7 @@ for root, dirs, files in os.walk("."):
             include_files.append(root[2:])
 
 def build(bld):
-    cpukit_include = os.path.join(bld.env.RTEMS_SOURCE, 'cpukit', 'include')
-    include_path = ['./', os.path.relpath(cpukit_include), os.path.relpath(bld.env.PREFIX)]
+    include_path = ['./', os.path.relpath(bld.env.PREFIX)]
     arch_lib_path = rtems.arch_bsp_lib_path(bld.env.RTEMS_VERSION,
                                             bld.env.RTEMS_ARCH_BSP)
 

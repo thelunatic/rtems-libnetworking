@@ -44,12 +44,8 @@ def init(ctx):
 
 def options(opt):
     rtems.options(opt)
-    opt.add_option("--rtems-source",
-                   dest = "rtems_source",
-                   help = "Path to RTEMS source files for includes")
 
 def configure(conf):
-    conf.env.RTEMS_SOURCE = conf.options.rtems_source
     rtems.configure(conf)
 
 def build(bld):
